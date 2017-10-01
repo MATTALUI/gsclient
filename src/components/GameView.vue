@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- <Navbar></Navbar> -->
+    <Navbar></Navbar>
     <h1>Game Viewer!</h1>
   </div>
 </template>
