@@ -2,7 +2,6 @@
   <div>
     <Navbar></Navbar>
     <div class = "content">
-      <h1>ALL GAMES</h1>
       <GameListItem v-for="(game, index) in games" :key="index" :game="game" :index="index"></GameListitem>
     </div>
   </div>
@@ -43,7 +42,6 @@ export default {
 .content{
   width: 80%;
   min-height: 100vh;
-  /*background-color: rgb(199,204,215);*/
   background-color: rgb(239,244,255);
   margin-top: 100px;
   margin-left: auto;
