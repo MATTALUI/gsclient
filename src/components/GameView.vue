@@ -2,6 +2,10 @@
   <div>
     <div class="content">
       <h1>{{game.title}}</h1>
+      <p>{{game.description}}</p>
+      <ul>
+        <li v-for="platform in game.platforms">{{platform}}</li>
+      </ul>
       <button @click="addToCart">ADD TO CART</button>
     </div>
   </div>
@@ -37,14 +41,14 @@
 </script>
 
 
-<style>
-.content{
+<style scoped>
+/*.content{
   width: 80%;
-  height: 80vh;
+  min-height: 80vh;
   background-color: rgb(239,244,255);
   margin-top: 100px;
   margin-left: auto;
   margin-right: auto;
   box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 1), 0 6px 20px 0 rgba(0, 0, 0, 1);
-}
+}*/
 </style>

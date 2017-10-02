@@ -45,7 +45,7 @@ export default {
 
 
 <style scoped>
-.content{
+/*.content{
   width: 80%;
   min-height: 100vh;
   background-color: rgb(239,244,255);
@@ -53,6 +53,6 @@ export default {
   margin-left: auto;
   margin-right: auto;
   box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 1), 0 6px 20px 0 rgba(0, 0, 0, 1);
-}
+}*/
 
 </style>
