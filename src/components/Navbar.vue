@@ -4,7 +4,7 @@
       <h1>SHOP</h1>
     </router-link>
     <router-link to="/cart" tag="div">
-      <h1>CART<span v-if="cart.length > 0">({{cart.length}})</span></h1>
+      <h1>CART<span v-if="cart.length > 0">({{count}})</span></h1>
     </router-link>
     <router-link to="/account" tag="div">
       <h1>ACCOUNT</h1>
@@ -15,6 +15,14 @@
 <script>
 export default {
   props: ['cart'],
+  computed: {
+    count: function () {
+      let count = this.cart.reduce((a, b) => {
+        return a + b.quantity
+      }, 0)
+      return count
+    }
+  },
   created: function () {
 
   }

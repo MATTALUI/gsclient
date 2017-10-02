@@ -12,7 +12,7 @@
 export default {
   props: ['cart'],
   created () {
-    console.log(this._props.cart)
+    // console.log(this._props.cart)
   },
   data () {
     return {

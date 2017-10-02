@@ -12,9 +12,14 @@ export default {
   components: {Navbar},
   methods: {
     addToCart: function (items) {
-      items.forEach((item) => {
-        this._data.cart.push(item)
-      })
+      // console.log(items._id)
+      let copyInCart = this.cart.find(item => item._id === items._id)
+      if (typeof copyInCart === 'undefined') {
+        this.cart.push(items)
+      } else {
+        copyInCart.quantity += items.quantity
+        console.log(copyInCart)
+      }
     }
   },
   data () {
@@ -38,7 +43,7 @@ export default {
 
 }
 .content{
-  width: 80%;
+  width: 90%;
   min-height: 80vh;
   background-color: rgb(239,244,255);
   margin-top: 100px;
