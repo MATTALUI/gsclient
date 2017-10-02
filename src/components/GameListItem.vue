@@ -5,7 +5,7 @@
     </div>
     <div class="gameInfo">
       <router-link :to="link" tag="h2"><a>{{game.title}}</a></router-link>
-
+      <h2>${{game.price.toFixed(2)}}</h2>
       <h2><i v-for="(star,index) in stars" :class="stars[index]" @mouseover="ratePreview(index)" @mouseleave="setStars" @click="rateGame(index)"></i></h2>
     </div>
   </div>
@@ -76,12 +76,11 @@ export default {
 <style scoped>
   .gameCard{
     display: flex;
-    /*border-style: solid;
-    border-color: black;*/
   }
   img{
     height: 200px;
     width: 200px;
+    margin: 0;
   }
   i{
     color: gold;

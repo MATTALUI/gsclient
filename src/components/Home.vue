@@ -1,21 +1,19 @@
 <template>
   <div>
-    <Navbar></Navbar>
     <div class = "content">
-      <GameListItem v-for="(game, index) in games" :key="index" :game="game" :index="index"></GameListitem>
+      <GameListItem v-for="(game, index) in searchList" :key="index" :game="game" :index="index"></GameListitem>
     </div>
   </div>
 </template>
 
 
 <script>
-import Navbar from '@/components/Navbar.vue'
 import GameListItem from '@/components/GameListItem.vue'
 import axios from 'axios'
 
 export default {
   name: 'home',
-  components: {Navbar, GameListItem},
+  components: {GameListItem},
   created () {
     axios({
       url: 'http://localhost:8000/games',
@@ -31,7 +29,15 @@ export default {
   data () {
     return {
       msg: 'You have done it!',
-      games: []
+      games: [],
+      search: ''
+    }
+  },
+  computed: {
+    searchList: function () {
+      return (this._data.games.filter((game) => {
+        return (game.title.toLowerCase().indexOf(this._data.search.toLowerCase()) > -1)
+      }))
     }
   }
 }

@@ -1,18 +1,36 @@
 <template>
   <div>
-    <Navbar></Navbar>
-    <h1>Game Viewer!</h1>
+    <div class="content">
+      <h1>{{game.title}}</h1>
+      <button @click="addToCart">ADD TO CART</button>
+    </div>
   </div>
 </template>
 
 
 <script>
-  import Navbar from '@/components/Navbar.vue'
+  import axios from 'axios'
   export default {
-    components: {Navbar},
+    created () {
+      let gameId = this.$route.params.id
+      axios({
+        url: `http://localhost:8000/games/${gameId}`,
+        method: `GET`,
+        headers: {
+          Authorization: 'Basic bWF0dGFsdWk6cGFzc3dvcmQ='
+        }
+      }).then((response) => {
+        this.game = response.data[0]
+      })
+    },
     data () {
       return {
-
+        game: {}
+      }
+    },
+    methods: {
+      addToCart: function () {
+        this.$emit('addToCart', [this._data.game])
       }
     }
   }
@@ -20,4 +38,13 @@
 
 
 <style>
+.content{
+  width: 80%;
+  height: 80vh;
+  background-color: rgb(239,244,255);
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 1), 0 6px 20px 0 rgba(0, 0, 0, 1);
+}
 </style>

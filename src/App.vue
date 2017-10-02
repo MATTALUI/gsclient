@@ -1,12 +1,34 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <Navbar :cart="cart" @beforeunload="alerter"></Navbar>
+    <router-view @addToCart="addToCart" :cart = "cart"></router-view>
   </div>
 </template>
 
 <script>
+import Navbar from '@/components/Navbar.vue'
 export default {
-  name: 'app'
+  name: 'app',
+  components: {Navbar},
+  methods: {
+    addToCart: function (items) {
+      items.forEach((item) => {
+        this._data.cart.push(item)
+      })
+    },
+    alerter: () => {
+      alert('no!')
+    }
+  },
+  beforeMount: function () {
+    // console.log(this.alerter())
+    window.beforeunload = this.alerter
+  },
+  data () {
+    return {
+      cart: []
+    }
+  }
 }
 </script>
 

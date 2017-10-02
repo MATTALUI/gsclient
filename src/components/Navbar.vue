@@ -3,6 +3,9 @@
     <router-link to="/" tag="div">
       <h1>SHOP</h1>
     </router-link>
+    <router-link to="/cart" tag="div">
+      <h1>CART<span v-if="cart.length > 0">({{cart.length}})</span></h1>
+    </router-link>
     <router-link to="/account" tag="div">
       <h1>ACCOUNT</h1>
     </router-link>
@@ -10,6 +13,12 @@
 </template>
 
 <script>
+export default {
+  props: ['cart'],
+  created: function () {
+
+  }
+}
 </script>
 
 <style scoped>
@@ -17,7 +26,7 @@ div{
   height: 100%;
   text-align: center;
   color: white;
-  padding: 0 3%;
+  padding: 0 2%;
 }
 div:hover{
   background-color: rgb(150,50,50);
@@ -28,7 +37,7 @@ nav{
   /*background-color: rgb(239,244,255);*/
   /*background-color: rgb(199,204,215);*/
   background-color: rgb(150, 0, 0);
-  /*border-bottom: solid white 4px;*/
+  /*border-bottom: solid 10px;*/
   position: fixed;
   top: 0;
   display: flex;
