@@ -11,10 +11,30 @@
           <h3>You have {{inCartAlready.quantity}} copies already in your cart.</h3>
         </div>
         <h6>ADD TO CART</h6>
-        <select>
-          <option v-for="platform in game.platforms">{{platform}}</option>
-        </select>
-        <input type="number" v-model.number="quantity" :value="quantity"/>
+        <table>
+          <tr>
+            <td>SYSTEM</td>
+            <td>PRICE</td>
+            <td>QUANTITY</td>
+            <td>TOTAL</td>
+          </tr>
+          <tr>
+            <td>
+              <select v-model="system">
+                <option v-for="platform in game.platforms">{{platform}}</option>
+              </select>
+            </td>
+            <td>
+              {{this.game.price}}
+            </td>
+            <td>
+              <input type="number" v-model.number="quantity" :value="quantity"/>
+            </td>
+            <td>
+              {{(this.quantity*this.game.price).toFixed(2)}}
+            </td>
+          </tr>
+        </table>
         <button @click="addToCart">ADD TO CART</button>
       </div>
     </div>
@@ -36,12 +56,14 @@
         }
       }).then((response) => {
         this.game = response.data[0]
+        this.system = response.data[0].platforms[0]
       })
     },
     data () {
       return {
         game: {},
-        quantity: 1
+        quantity: 1,
+        system: ''
       }
     },
     computed: {
@@ -53,9 +75,12 @@
     },
     methods: {
       addToCart: function () {
-        let copy = Object.assign({}, this.game)
-        copy.quantity = this.quantity
-        this.$emit('addToCart', copy)
+        let cartObject = {}
+        cartObject._id = this.game._id
+        cartObject.title = this.game.title
+        cartObject.price = this.game.price
+        cartObject.quantity = this.quantity
+        this.$emit('addToCart', cartObject)
         this.$router.push('/')
       }
     }
@@ -90,6 +115,26 @@ img{
 }
 p,h1,h3,h6{
   text-align: center;
+}
+table{
+  /*background-color: pink;*/
+  margin: 0 auto;
+}
+td{
+  margin: 0 100px;
+}
+/*table > * {
+  margin: 0 20px;
+}*/
+/*input,select{
+  margin-left: 30px;
+}*/
+button{
+  position: relative;
+  left: 70%;
+}
+td{
+  border-spacing: 100px;
 }
 
 </style>
